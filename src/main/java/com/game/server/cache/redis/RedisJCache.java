@@ -1,6 +1,8 @@
 package com.game.server.cache.redis;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
 import com.game.server.cache.common.INetCache;
 
@@ -71,6 +73,31 @@ public class RedisJCache implements INetCache {
 
 	@Override
 	public void close() {
+	}
+	@Override
+	public List<Serializable> r_lrange(String key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void r_lpush(String key, Serializable value, int expireTime) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void r_lrem(String key, Serializable value) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public Set<String> h_hkeys(String key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void h_hdel(String key, String... fileds) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

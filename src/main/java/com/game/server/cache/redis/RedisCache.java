@@ -1,6 +1,8 @@
 package com.game.server.cache.redis;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
 import com.game.server.cache.common.CacheKeyUtil;
 import com.game.server.cache.common.INetCache;
@@ -57,12 +59,6 @@ public class RedisCache implements INetCache {
 		client.r_set(CacheKeyUtil.getKey(nameSpace, key), value, expireTime);
 	}
 
-//	public void setMap(int nameSpace,String key,HashMap<String,Serializable> map,int expireTime){
-//		client.r_set(CacheKeyUtil.getKey(nameSpace, key), map, expireTime);
-//	}
-//	public HashMap<String,Serializable> getMap(int nameSpace,String key){
-//		return null;
-//	}
 
 	public void setMapFieldVal(int nameSpace,String key,String field,Serializable value,int expireTime){
 		client.h_set(key, field, value, expireTime);
@@ -97,6 +93,36 @@ public class RedisCache implements INetCache {
 	@Override
 	public void close() {
 		client.close();
+	}
+
+	@Override
+	public List<Serializable> r_lrange(String key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void r_lpush(String key, Serializable value, int expireTime) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void r_lrem(String key, Serializable value) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Set<String> h_hkeys(String key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void h_hdel(String key, String... fileds) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

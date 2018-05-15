@@ -3,6 +3,8 @@ package com.game.server.cache.common;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 
 
 
@@ -32,6 +34,33 @@ public class CacheUtils {
 			Serializable  serial) {
 		INetCache cache = SpringContextUtil.getBean("iNetCache");
 		cache.set(1, key, serial);
+		
+	}
+	public static void lpush(String key, Serializable value) {
+		INetCache cache = SpringContextUtil.getBean("iNetCache");
+		cache.r_lpush(key, value, 36000);
+	}
+	public static <T> List<T> lrange(String key){
+		INetCache cache = SpringContextUtil.getBean("iNetCache");
+		return (List<T>) cache.r_lrange(key);
+		
+	}
+	public static  void lrem(String key, Serializable value) {
+		INetCache cache = SpringContextUtil.getBean("iNetCache");
+		cache.r_lrem(key, value);
 	}
 
+	public static Set<String> h_hkeys(String key) {
+		// TODO Auto-generated method stub
+		INetCache cache = SpringContextUtil.getBean("iNetCache");
+		return cache.h_hkeys(key);
+	}
+
+	
+	public static void hdel(String key, String... fileds) {
+		// TODO Auto-generated method stub
+		INetCache cache = SpringContextUtil.getBean("iNetCache");
+		cache.h_hdel(key, fileds);
+	}
+	
 }

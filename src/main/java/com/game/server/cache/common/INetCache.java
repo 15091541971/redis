@@ -1,6 +1,8 @@
 package com.game.server.cache.common;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
 import com.game.server.cache.conf.CacheValues;
 
@@ -78,5 +80,31 @@ public interface INetCache {
 	 * 关闭连接
 	 */
 	public void close();
+	public List<Serializable> r_lrange(String key);
+	/**
+	 * 向列表中添加数据
+	 * @param key
+	 * @param value
+	 * @param expireTime
+	 */
+	public void r_lpush(String key, Serializable value, int expireTime);
+	/**
+	 * 删除列表中指定的数据
+	 * @param key
+	 * @param value
+	 */
+	public void r_lrem(String key, Serializable value);
+	/**
+	 * 获取hash表中所有字段
+	 * @param key
+	 * @return
+	 */
+	public Set<String> h_hkeys(String key);
+	/**
+	 * 删除hash表中的字段
+	 * @param key
+	 * @param fileds
+	 */
+	public void h_hdel(String key,String... fileds);
 	
 }

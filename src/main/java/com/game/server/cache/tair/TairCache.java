@@ -3,6 +3,7 @@ package com.game.server.cache.tair;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 
@@ -114,6 +115,36 @@ public class TairCache implements INetCache {
 	public void set(int nameSpace, String key, Serializable value,int expireTime) {
 		tairManager.put(nameSpace, key, value, default_version, expireTime);
 
+	}
+
+	@Override
+	public List<Serializable> r_lrange(String key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void r_lpush(String key, Serializable value, int expireTime) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void r_lrem(String key, Serializable value) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Set<String> h_hkeys(String key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void h_hdel(String key, String... fileds) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

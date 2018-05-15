@@ -1,6 +1,8 @@
 package com.game.server.cache.ehcache;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -111,6 +113,34 @@ public class RedisCacheImpl implements INetCache {
 	public synchronized void set(int nameSpace, String key, Serializable value, int expireTime) {
 		// TODO Auto-generated method stub
 		defaultRedisClient.r_set(nameSpace+"_"+key, value, expireTime);
+	}
+
+	public List<Serializable> r_lrange(String key){
+		return defaultRedisClient.r_lrange( key);
+	}
+
+	@Override
+	public void r_lpush(String key, Serializable value, int expireTime) {
+		// TODO Auto-generated method stub
+		 defaultRedisClient.r_lpush(key, value, 3600);
+	}
+
+	@Override
+	public void r_lrem(String key, Serializable value) {
+		// TODO Auto-generated method stub
+		 defaultRedisClient.r_lrem(key, value);
+	}
+
+	@Override
+	public Set<String> h_hkeys(String key) {
+		// TODO Auto-generated method stub
+		return defaultRedisClient.h_hkeys(key);
+	}
+
+	@Override
+	public void h_hdel(String key, String... fileds) {
+		// TODO Auto-generated method stub
+		defaultRedisClient.h_hdel(key, fileds);
 	}
 
 	

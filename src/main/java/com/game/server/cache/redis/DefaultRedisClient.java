@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.taobao.tair.Result;
 import com.taobao.tair.ResultCode;
@@ -172,6 +173,7 @@ public void initParams() {
 		}
 		try {
 			shardJedis.set(key.getBytes(), objectToByte(value));
+	
 			shardJedis.expire(key, expireTime);
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -250,7 +252,7 @@ public void initParams() {
 		}
 
 	}
-
+	
 	public Serializable h_get(String key,String field) {
 		if (shardJedis == null) {
 			return null;
@@ -263,6 +265,7 @@ public void initParams() {
 			return null;
 		}
 	}
+	
 	public ResultCode h_set(String key, String field ,Serializable value, int expireTime) {
 		ResultCode rc = ResultCode.SUCCESS;
 		if (shardJedis == null) {
@@ -279,7 +282,32 @@ public void initParams() {
 
 		return rc;
 	}
-	
+	public Set<String> h_hkeys(String key) {
+		if (shardJedis == null) {
+			return null;
+		}
+		try {
+			Set<String> set=	shardJedis.hkeys(key);
+			return set;
+		
+		} catch (Exception ex) {
+			return null;
+		}
+		
+	}
+	public void h_hdel(String key,String... fileds) {
+		if (shardJedis == null) {
+			
+		}
+		try {
+		shardJedis.hdel(key, fileds);
+			
+		
+		} catch (Exception ex) {
+			
+		}
+		
+	}
 	public long r_delete(String key) {
 		// TODO Auto-generated method stub
 		if (shardJedis == null) {
@@ -349,7 +377,61 @@ public void initParams() {
 			return -1;
 		}
 	}
+	public ResultCode r_lpush(String key, Serializable value, int expireTime) {
+		ResultCode rc = ResultCode.SUCCESS;
+		if (shardJedis == null) {
+			rc = ResultCode.CONNERROR;
+			return rc;
+		}
+		try {
+			
+			shardJedis.lpush(key.getBytes(), objectToByte(value));
+			shardJedis.expire(key, expireTime);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			rc = ResultCode.SERVERERROR;
+		}
 
+		return rc;
+	}
+	public void r_lrem(String key, Serializable value) {
+		ResultCode rc = ResultCode.SUCCESS;
+		if (shardJedis == null) {
+			rc = ResultCode.CONNERROR;
+			
+		}
+	
+		try {
+			shardJedis.lrem(key.getBytes(), 1, objectToByte(value));
+		
+	
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			
+		}
+		
+	}
+	public List<Serializable> r_lrange(String key) {
+		ResultCode rc = ResultCode.SUCCESS;
+		if (shardJedis == null) {
+			rc = ResultCode.CONNERROR;
+			
+		}
+		List<Serializable> ls=new ArrayList<>();
+		try {
+			
+			long length=shardJedis.llen(key.getBytes());
+			List<byte[]> list=	shardJedis.lrange(key.getBytes(), 0, length);
+		    for (byte[] bs : list) {
+		    	Object obj = byteToObject(bs);
+		    	ls.add( (Serializable)obj);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			
+		}
+		return ls;
+	}
 	public Object getOrigin(Serializable key) {
 		// TODO Auto-generated method stub
 
