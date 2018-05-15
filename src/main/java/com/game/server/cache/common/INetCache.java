@@ -4,14 +4,12 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
-import com.game.server.cache.conf.CacheValues;
-
 /**
  * @author Reason.Yea 
  * @version 创建时间：Jan 8, 2014
  */
 public interface INetCache {
-	public int defaltNameSpace = CacheValues.CORE_CACHE_DEFAULT_NAMESPACE; 
+	public int defaltNameSpace = 0; 
 	/**
 	 * 根据Key值获取数据
 	 * @param key 要获取的数据的key

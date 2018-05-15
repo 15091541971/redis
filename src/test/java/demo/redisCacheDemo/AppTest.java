@@ -36,8 +36,8 @@ public class AppTest
 		User u2=new User();
 		u2.setAddress("we");
 		u2.setName("tr");
-		/*CacheUtils.lpush("dfd", u);
-		CacheUtils.lpush("dfd", u2);*/
+		CacheUtils.lpush("dfd", u);
+		CacheUtils.lpush("dfd", u2);
 		List<Object> objs=CacheUtils.lrange("dfd");
 		for (Object object : objs) {
 			System.out.println(object);

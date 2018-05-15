@@ -11,8 +11,8 @@ import com.google.protobuf.ByteString.Output;
 
 /**
  * Kryo序列化工具类
- * @author zhenym
- * @date 2015-4-15
+ * @author 
+ * @date 
  */
 public class KryoUtils{
 	

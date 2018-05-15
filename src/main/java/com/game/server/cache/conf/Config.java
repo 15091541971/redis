@@ -89,19 +89,5 @@ public class Config {
 	}
 	
 
-	public static void writeBackWhileAPPExit() {
-		/*Runtime.getRuntime().addShutdownHook(new Thread() {
-			public void run() {
-				try {
-					FileWriter fw = new FileWriter(CacheValues.CORE_CACHE_DEFAULT_WRITELOG);
-					String info = "the application ended! " + (new Date()).toString();
-					logger.info(info);
-					fw.write(info);
-					fw.close();
-				} catch (IOException ex) {
-					throw new CacheException(ex);
-				}
-			}
-		});*/
-	}
+	
 }

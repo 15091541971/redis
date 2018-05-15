@@ -1,7 +1,7 @@
 package com.game.server.cache.conf;
 
 /**
- * @author Reason.Yea 
+ * @author 
  * @version 创建时间：Jan 8, 2014
  */
 public class CacheValues {
@@ -55,6 +55,3 @@ public class CacheValues {
 	public static final int CORE_CACHE_BUSI_DEFAULT_TIME = Config.get("core.cache.busi.default.time")==null?24*60:Integer.parseInt(Config.get("core.cache.busi.default.time"));
 	public static final int CACHE_DISASTER_TOLERANT_NAMESPACE = 2;
 }
-
-
-
