@@ -9,13 +9,9 @@
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd"
 	default-init-method="initialize" default-destroy-method="destroy">
 
-	 
-
-
-<!-- 	<context:component-scan base-package="com.leyou.admin"> -->
 		<context:component-scan base-package="com.game"></context:component-scan>
 
-	<!-- 开启注解事务 只对当前配置文件有效 -->
+
 
 	 <bean  class="com.game.server.cache.redis.DefaultRedisClient"
 		scope="prototype">
