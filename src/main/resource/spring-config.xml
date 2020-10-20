@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+
+	http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-3.2.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd"
+	default-init-method="initialize" default-destroy-method="destroy">
+
+		<context:component-scan base-package="com.game"></context:component-scan>
+
+
+
+	 <bean  class="com.game.server.cache.redis.DefaultRedisClient"
+		scope="prototype">
+		<constructor-arg index="0" value="127.0.0.1"></constructor-arg>
+		<constructor-arg index="1" value="6379"></constructor-arg>
+		<constructor-arg index="2" value="123456"></constructor-arg>
+	</bean>
+    <bean class="com.game.server.cache.common.SpringContextUtil"/>
+	
+</beans>
+
